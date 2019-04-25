@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
+import { updateUser } from './reducer';
+import { connect } from 'react-redux';
 
 class HomeScreen extends Component
 {
   static navigationOptions = {
     title: 'HomeScreen'
   };
+
+  somethingToDo(navigate)
+  {
+    this.props.update("toto");
+    navigate('Another');
+  }
 
   render()
   {
@@ -16,11 +24,28 @@ class HomeScreen extends Component
           <Text>HomeScreen</Text>
           <Button
             title="Go to AnotherScreen"
-            onPress={ () => this.props.navigation.navigate('Another') }
+            onPress={ () => this.somethingToDo(navigate) }
           />
       </View>
     );
   }
 }
 
-export default (HomeScreen);
+function mapStateToProps(state)
+{
+  return {
+    user: state.user
+  };
+}
+
+function mapDispatchToProps(dispatch)
+{
+  return {
+    update: (user) => {
+      dispatch(updateUser(user))
+    }
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

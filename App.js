@@ -30,9 +30,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <AppContainer />
-        </View>
+          <AppContainer/>
       </Provider>
     );
   }
@@ -46,3 +44,4 @@ const styles = StyleSheet.create({
 
 
 // https://github.com/relferreira/react-native-redux/tree/react-navigation
+// https://docs.nativebase.io/docs/examples/ReduxCounterExample.html
